@@ -1,0 +1,52 @@
+server:
+  port: 8080
+
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.example.stu.bmyean
+hive:
+  datasource:
+    druid:
+      #用户名和密码 如果你的hive 权限关掉的就可以不写，如果没有关闭权限，需要设置一下数据库的用户名和密码
+      username: lj
+      password: 123qweRDF#
+      driverClassName: org.apache.hive.jdbc.HiveDriver
+      # 改成你自己的hive的ip和数据库名字
+      url: jdbc:hive2://192.168.10.128:10000/default
+      initialSize: 10
+      maxActive: 50
+      removeAbandoned: true
+      removeAbandonedTimeout: 60
+      maxWait: 60000
+
+mysql:
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=UTC&useSSL=false
+      username: root
+      password: yang
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+      #配置初始化大小/最小/最大
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      #获取连接等待超时时间
+      max-wait: 60000
+      #间隔多久进行一次检测，检测需要关闭的空闲连接
+      time-between-eviction-runs-millis: 60000
+      #一个连接在池中最小生存的时间
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+
+
+logging:
+  level:
+    com:
+      example:
+        mapper: debug
